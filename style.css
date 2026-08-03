@@ -777,6 +777,10 @@ body {
   align-content: start;
 }
 
+.teams-grid[data-few="true"] {
+  grid-template-columns: 1fr;
+}
+
 /* Team Card */
 .team-card {
   display: flex;
@@ -791,7 +795,7 @@ body {
   backdrop-filter: blur(10px);
   transition: all var(--transition-normal);
   position: relative;
-  min-height: 110px;
+  min-height: var(--card-min-h, 110px);
 }
 
 .team-card:hover {
@@ -801,8 +805,8 @@ body {
 }
 
 .team-card-logo {
-  width: 44px;
-  height: 44px;
+  width: var(--card-logo, 44px);
+  height: var(--card-logo, 44px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -817,7 +821,7 @@ body {
 }
 
 .team-card-name {
-  font-size: 0.72rem;
+  font-size: var(--card-name, 0.72rem);
   font-weight: 600;
   text-align: center;
   color: var(--text-secondary);
@@ -890,11 +894,15 @@ body {
 .selection-actions {
   width: 100%;
   max-width: 400px;
-  padding-bottom: 8px;
   position: sticky;
   bottom: 0;
-  background: linear-gradient(180deg, transparent 0%, var(--bg-primary) 30%);
-  padding-top: 16px;
+  z-index: 5;
+  padding: 18px 12px 12px;
+  margin-top: 8px;
+  background: linear-gradient(180deg, rgba(10, 10, 46, 0) 0%, rgba(10, 10, 46, 0.8) 30%, rgba(10, 10, 46, 0.97) 65%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* --- Winner Screen --- */
@@ -986,6 +994,16 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  margin-bottom: 10px;
+}
+
+.winner-saved {
+  font-size: 0.8rem;
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   margin-bottom: 28px;
 }
 
@@ -1142,13 +1160,13 @@ body {
   }
 
   .team-card {
-    min-height: 120px;
+    min-height: max(120px, var(--card-min-h, 120px));
     padding: 18px 10px;
   }
 
   .team-card-logo {
-    width: 50px;
-    height: 50px;
+    width: max(50px, var(--card-logo, 50px));
+    height: max(50px, var(--card-logo, 50px));
   }
 
   .home-title {
@@ -1169,17 +1187,17 @@ body {
   }
 
   .team-card {
-    min-height: 130px;
+    min-height: max(130px, var(--card-min-h, 130px));
     padding: 20px 12px;
   }
 
   .team-card-logo {
-    width: 56px;
-    height: 56px;
+    width: max(56px, var(--card-logo, 56px));
+    height: max(56px, var(--card-logo, 56px));
   }
 
   .team-card-name {
-    font-size: 0.78rem;
+    font-size: max(0.78rem, var(--card-name, 0.78rem));
   }
 
   .home-title {
@@ -1238,7 +1256,7 @@ body {
   }
 
   .team-card {
-    min-height: 140px;
+    min-height: max(140px, var(--card-min-h, 140px));
     padding: 22px 14px;
   }
 
@@ -1286,7 +1304,7 @@ body {
   }
 
   .team-card {
-    min-height: 150px;
+    min-height: max(150px, var(--card-min-h, 150px));
   }
 }
 

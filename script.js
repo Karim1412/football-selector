@@ -562,11 +562,6 @@
         self.selectTeam();
       });
 
-      // Save result
-      document.getElementById('btn-save').addEventListener('click', function () {
-        self.saveResult();
-      });
-
       // Return home from winner
       document.getElementById('btn-home').addEventListener('click', function () {
         Sounds.play('click');
@@ -642,6 +637,18 @@
       var grid = document.getElementById('teams-grid');
       if (!grid) return;
       grid.innerHTML = '';
+
+      // Remaining teams grow bigger as teams get eliminated
+      var n = this.remainingTeams.length;
+      var progress = 1 - (n / TEAMS.length);
+      grid.style.setProperty('--card-logo', (44 + progress * 90).toFixed(1) + 'px');
+      grid.style.setProperty('--card-min-h', (110 + progress * 120).toFixed(1) + 'px');
+      grid.style.setProperty('--card-name', (0.72 + progress * 0.38).toFixed(2) + 'rem');
+      if (n <= 3) {
+        grid.setAttribute('data-few', 'true');
+      } else {
+        grid.removeAttribute('data-few');
+      }
 
       var self = this;
       this.remainingTeams.forEach(function (team) {
@@ -779,9 +786,12 @@
 
       // Store winner data
       this.winnerTeam = team;
+
+      // Auto-save the result
+      this.saveResult();
     },
 
-    // ---- Save Result ----
+    // ---- Save Result (automatic) ----
     saveResult() {
       if (!this.user || !this.winnerTeam) return;
 
@@ -793,17 +803,10 @@
       };
 
       Storage.addUser(userData);
-      showToast('Result saved! Welcome ' + this.user + '!', 'success');
+      showToast('Result saved automatically for ' + this.user + '!', 'success');
 
-      Confetti.stop();
-
-      // Go home after short delay
-      var self = this;
-      setTimeout(function () {
-        showScreen('home-screen');
-        self.renderUsers();
-        self.renderStats();
-      }, 800);
+      this.renderUsers();
+      this.renderStats();
     },
 
     // ---- Render Users ----
