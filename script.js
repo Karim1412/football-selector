@@ -757,10 +757,8 @@
       grid.innerHTML = '';
 
       // Remaining teams grow bigger as teams get eliminated
+      // (grid rows + flexible logos handle the sizing automatically)
       var n = this.remainingTeams.length;
-      var progress = 1 - (n / TEAMS.length);
-      grid.style.setProperty('--card-logo', (36 + progress * 64).toFixed(1) + 'px');
-      grid.style.setProperty('--card-name', (0.6 + progress * 0.3).toFixed(2) + 'rem');
       if (n <= 3) {
         grid.setAttribute('data-few', 'true');
       } else {

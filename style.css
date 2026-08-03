@@ -755,28 +755,29 @@ body {
 /* --- Selection Screen --- */
 #selection-screen {
   height: 100vh;
+  height: 100svh;
   height: 100dvh;
   overflow: hidden;
-  padding: 54px 12px 10px;
+  padding: 48px 10px 8px;
   align-items: center;
 }
 
 .selection-header {
   text-align: center;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   width: 100%;
   max-width: 400px;
 }
 
 .selection-title {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 700;
   margin-bottom: 2px;
 }
 
 .selection-counter {
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   color: var(--text-secondary);
   font-weight: 500;
 }
@@ -784,15 +785,15 @@ body {
 .selection-counter span:first-child {
   color: var(--purple-light);
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.82rem;
 }
 
 .selection-progress {
   width: 100%;
-  height: 4px;
+  height: 3px;
   background: rgba(255,255,255,0.08);
   border-radius: 4px;
-  margin-top: 6px;
+  margin-top: 5px;
   overflow: hidden;
 }
 
@@ -812,8 +813,8 @@ body {
   min-height: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 1fr;
-  gap: 8px;
+  grid-auto-rows: minmax(0, 1fr);
+  gap: 6px;
 }
 
 .teams-grid[data-few="true"] {
@@ -826,8 +827,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  padding: 6px 2px;
+  gap: 2px;
+  padding: 4px 2px;
   background: var(--bg-card);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-sm);
@@ -835,6 +836,7 @@ body {
   transition: all var(--transition-normal);
   position: relative;
   min-height: 0;
+  overflow: hidden;
 }
 
 .team-card:hover {
@@ -844,8 +846,9 @@ body {
 }
 
 .team-card-logo {
-  width: var(--card-logo, 36px);
-  height: var(--card-logo, 36px);
+  flex: 1;
+  min-height: 0;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -860,11 +863,11 @@ body {
 }
 
 .team-card-name {
-  font-size: var(--card-name, 0.6rem);
+  font-size: 0.55rem;
   font-weight: 600;
   text-align: center;
   color: var(--text-secondary);
-  line-height: 1.2;
+  line-height: 1.1;
   max-width: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -1258,13 +1261,12 @@ body {
 /* 430px - larger phones */
 @media (min-width: 430px) {
   .teams-grid {
-    gap: 10px;
+    gap: 8px;
     max-width: 500px;
   }
 
-  .team-card-logo {
-    width: max(40px, var(--card-logo, 40px));
-    height: max(40px, var(--card-logo, 40px));
+  .team-card-name {
+    font-size: 0.6rem;
   }
 
   .home-title {
@@ -1280,21 +1282,16 @@ body {
 @media (min-width: 768px) {
   .teams-grid {
     grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
+    gap: 10px;
     max-width: 700px;
   }
 
   .team-card {
-    padding: 14px 8px;
-  }
-
-  .team-card-logo {
-    width: max(48px, var(--card-logo, 48px));
-    height: max(48px, var(--card-logo, 48px));
+    padding: 8px 4px;
   }
 
   .team-card-name {
-    font-size: max(0.68rem, var(--card-name, 0.68rem));
+    font-size: 0.65rem;
   }
 
   .home-title {
@@ -1347,12 +1344,12 @@ body {
 /* Desktop 1024px+ */
 @media (min-width: 1024px) {
   .teams-grid {
-    gap: 14px;
+    gap: 12px;
     max-width: 900px;
   }
 
   .team-card {
-    padding: 16px 10px;
+    padding: 10px 6px;
   }
 
   .team-card:hover {
@@ -1394,7 +1391,7 @@ body {
 @media (min-width: 1440px) {
   .teams-grid {
     max-width: 1000px;
-    gap: 16px;
+    gap: 14px;
   }
 }
 
