@@ -4,32 +4,172 @@
    ======================================== */
 
 (function () {
-  'use strict';
+  "use strict";
 
   // ========================================
   // TEAM DATA
   // ========================================
   const TEAMS = [
-    { id: 1, name: 'Arsenal', short: 'ARS', color: '#EF0107', alt: '#9C824A', logo: 'assets/logos/arsenal.svg' },
-    { id: 2, name: 'Aston Villa', short: 'AVL', color: '#670E36', alt: '#95BFE5', logo: 'assets/logos/aston-villa.svg' },
-    { id: 3, name: 'Bournemouth', short: 'BOU', color: '#DA291C', alt: '#000000', logo: 'assets/logos/bournemouth.svg' },
-    { id: 4, name: 'Brentford', short: 'BRE', color: '#E30613', alt: '#FFFFFF', logo: 'assets/logos/brentford.svg' },
-    { id: 5, name: 'Brighton & Hove Albion', short: 'BHA', color: '#0057B8', alt: '#FFFFFF', logo: 'assets/logos/brighton.svg' },
-    { id: 6, name: 'Chelsea', short: 'CHE', color: '#034694', alt: '#FFFFFF', logo: 'assets/logos/chelsea.svg' },
-    { id: 7, name: 'Crystal Palace', short: 'CRY', color: '#1B458F', alt: '#C4122E', logo: 'assets/logos/crystal-palace.svg' },
-    { id: 8, name: 'Everton', short: 'EVE', color: '#003399', alt: '#FFFFFF', logo: 'assets/logos/everton.svg' },
-    { id: 9, name: 'Fulham', short: 'FUL', color: '#FFFFFF', alt: '#000000', logo: 'assets/logos/fulham.svg' },
-    { id: 10, name: 'Ipswich Town', short: 'IPS', color: '#003399', alt: '#FFFFFF', logo: 'assets/logos/ipswich.svg' },
-    { id: 11, name: 'Leicester City', short: 'LEI', color: '#003090', alt: '#FFFFFF', logo: 'assets/logos/leicester.svg' },
-    { id: 12, name: 'Liverpool', short: 'LIV', color: '#C8102E', alt: '#FFFFFF', logo: 'assets/logos/liverpool.svg' },
-    { id: 13, name: 'Manchester City', short: 'MCI', color: '#6CABDD', alt: '#FFFFFF', logo: 'assets/logos/man-city.svg' },
-    { id: 14, name: 'Manchester United', short: 'MUN', color: '#DA291C', alt: '#FFFFFF', logo: 'assets/logos/man-united.svg' },
-    { id: 15, name: 'Newcastle United', short: 'NEW', color: '#241F20', alt: '#FFFFFF', logo: 'assets/logos/newcastle.svg' },
-    { id: 16, name: 'Nottingham Forest', short: 'NFO', color: '#E53233', alt: '#FFFFFF', logo: 'assets/logos/nottingham-forest.svg' },
-    { id: 17, name: 'Southampton', short: 'SOU', color: '#D71920', alt: '#FFFFFF', logo: 'assets/logos/southampton.svg' },
-    { id: 18, name: 'Tottenham Hotspur', short: 'TOT', color: '#132257', alt: '#FFFFFF', logo: 'assets/logos/spurs.svg' },
-    { id: 19, name: 'West Ham United', short: 'WHU', color: '#7C2C3B', alt: '#1BB1E7', logo: 'assets/logos/west-ham.svg' },
-    { id: 20, name: 'Wolverhampton Wanderers', short: 'WOL', color: '#FDB913', alt: '#231F20', logo: 'assets/logos/wolves.svg' }
+    {
+      id: 1,
+      name: "Arsenal",
+      short: "ARS",
+      color: "#EF0107",
+      alt: "#9C824A",
+      logo: "assets/logos/arsenal.svg",
+    },
+    {
+      id: 2,
+      name: "Aston Villa",
+      short: "AVL",
+      color: "#670E36",
+      alt: "#95BFE5",
+      logo: "assets/logos/aston-villa.svg",
+    },
+    {
+      id: 3,
+      name: "Bournemouth",
+      short: "BOU",
+      color: "#DA291C",
+      alt: "#000000",
+      logo: "assets/logos/bournemouth.svg",
+    },
+    {
+      id: 4,
+      name: "Brentford",
+      short: "BRE",
+      color: "#E30613",
+      alt: "#FFFFFF",
+      logo: "assets/logos/brentford.svg",
+    },
+    {
+      id: 5,
+      name: "Brighton & Hove Albion",
+      short: "BHA",
+      color: "#0057B8",
+      alt: "#FFFFFF",
+      logo: "assets/logos/brighton.svg",
+    },
+    {
+      id: 6,
+      name: "Chelsea",
+      short: "CHE",
+      color: "#034694",
+      alt: "#FFFFFF",
+      logo: "assets/logos/chelsea.svg",
+    },
+    {
+      id: 7,
+      name: "Crystal Palace",
+      short: "CRY",
+      color: "#1B458F",
+      alt: "#C4122E",
+      logo: "assets/logos/crystal-palace.svg",
+    },
+    {
+      id: 8,
+      name: "Everton",
+      short: "EVE",
+      color: "#003399",
+      alt: "#FFFFFF",
+      logo: "assets/logos/everton.svg",
+    },
+    {
+      id: 9,
+      name: "Fulham",
+      short: "FUL",
+      color: "#FFFFFF",
+      alt: "#000000",
+      logo: "assets/logos/fulham.svg",
+    },
+    {
+      id: 10,
+      name: "Ipswich Town",
+      short: "IPS",
+      color: "#003399",
+      alt: "#FFFFFF",
+      logo: "assets/logos/ipswich.svg",
+    },
+    {
+      id: 11,
+      name: "Leicester City",
+      short: "LEI",
+      color: "#003090",
+      alt: "#FFFFFF",
+      logo: "assets/logos/leicester.svg",
+    },
+    {
+      id: 12,
+      name: "Liverpool",
+      short: "LIV",
+      color: "#C8102E",
+      alt: "#FFFFFF",
+      logo: "assets/logos/liverpool.svg",
+    },
+    {
+      id: 13,
+      name: "Manchester City",
+      short: "MCI",
+      color: "#6CABDD",
+      alt: "#FFFFFF",
+      logo: "assets/logos/man-city.svg",
+    },
+    {
+      id: 14,
+      name: "Manchester United",
+      short: "MUN",
+      color: "#DA291C",
+      alt: "#FFFFFF",
+      logo: "assets/logos/man-united.svg",
+    },
+    {
+      id: 15,
+      name: "Newcastle United",
+      short: "NEW",
+      color: "#241F20",
+      alt: "#FFFFFF",
+      logo: "assets/logos/newcastle.svg",
+    },
+    {
+      id: 16,
+      name: "Nottingham Forest",
+      short: "NFO",
+      color: "#E53233",
+      alt: "#FFFFFF",
+      logo: "assets/logos/nottingham-forest.svg",
+    },
+    {
+      id: 17,
+      name: "Southampton",
+      short: "SOU",
+      color: "#D71920",
+      alt: "#FFFFFF",
+      logo: "assets/logos/southampton.svg",
+    },
+    {
+      id: 18,
+      name: "Tottenham Hotspur",
+      short: "TOT",
+      color: "#132257",
+      alt: "#FFFFFF",
+      logo: "assets/logos/spurs.svg",
+    },
+    {
+      id: 19,
+      name: "West Ham United",
+      short: "WHU",
+      color: "#7C2C3B",
+      alt: "#1BB1E7",
+      logo: "assets/logos/west-ham.svg",
+    },
+    {
+      id: 20,
+      name: "Wolverhampton Wanderers",
+      short: "WOL",
+      color: "#FDB913",
+      alt: "#231F20",
+      logo: "assets/logos/wolves.svg",
+    },
   ];
 
   // ========================================
@@ -39,9 +179,10 @@
   // 3) Paste your project URL + anon key below
   // Leave empty to keep results in the browser.
   // ========================================
-  var SUPABASE_URL = '';
-  var SUPABASE_ANON_KEY = '';
-  var SUPABASE_TABLE = 'results';
+  var SUPABASE_URL = "https://zqjtrhwxmldoyhctvkrq.supabase.co/rest/v1/";
+  var SUPABASE_ANON_KEY =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxanRyaHd4bWxkb3loY3R2a3JxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU3Nzc1NDAsImV4cCI6MjEwMTM1MzU0MH0.kS60nIBH4XxXjjiZnBx53hCnTI3luTHnRslJ0xIj5tM";
+  var SUPABASE_TABLE = "results";
 
   var DB = {
     isConfigured() {
@@ -50,44 +191,72 @@
 
     headers() {
       return {
-        'apikey': SUPABASE_ANON_KEY,
-        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
-        'Content-Type': 'application/json',
-        'Prefer': 'return=representation'
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: "Bearer " + SUPABASE_ANON_KEY,
+        "Content-Type": "application/json",
+        Prefer: "return=representation",
       };
     },
 
     getResults() {
       if (!this.isConfigured()) return Promise.resolve(null);
-      return fetch(SUPABASE_URL + '/rest/v1/' + SUPABASE_TABLE + '?select=*&order=created_at.desc', {
-        headers: this.headers()
-      }).then(function (r) { return r.json(); })
-        .catch(function () { return null; });
+      return fetch(
+        SUPABASE_URL +
+          "/rest/v1/" +
+          SUPABASE_TABLE +
+          "?select=*&order=created_at.desc",
+        {
+          headers: this.headers(),
+        },
+      )
+        .then(function (r) {
+          return r.json();
+        })
+        .catch(function () {
+          return null;
+        });
     },
 
     addResult(user) {
       if (!this.isConfigured()) return Promise.resolve(null);
-      return fetch(SUPABASE_URL + '/rest/v1/' + SUPABASE_TABLE, {
-        method: 'POST',
+      return fetch(SUPABASE_URL + "/rest/v1/" + SUPABASE_TABLE, {
+        method: "POST",
         headers: this.headers(),
         body: JSON.stringify({
           name: user.name,
           team: user.team,
           team_id: user.teamId,
-          date: user.date
+          date: user.date,
+        }),
+      })
+        .then(function (r) {
+          return r.json();
         })
-      }).then(function (r) { return r.json(); })
-        .catch(function () { return null; });
+        .catch(function () {
+          return null;
+        });
     },
 
     deleteResult(name) {
       if (!this.isConfigured()) return Promise.resolve(null);
-      return fetch(SUPABASE_URL + '/rest/v1/' + SUPABASE_TABLE + '?name=eq.' + encodeURIComponent(name), {
-        method: 'DELETE',
-        headers: this.headers()
-      }).then(function () { return true; })
-        .catch(function () { return null; });
-    }
+      return fetch(
+        SUPABASE_URL +
+          "/rest/v1/" +
+          SUPABASE_TABLE +
+          "?name=eq." +
+          encodeURIComponent(name),
+        {
+          method: "DELETE",
+          headers: this.headers(),
+        },
+      )
+        .then(function () {
+          return true;
+        })
+        .catch(function () {
+          return null;
+        });
+    },
   };
 
   // ========================================
@@ -95,7 +264,7 @@
   // ========================================
   var badgeCounter = 0;
   function createBadgeSVG(team) {
-    const gid = 'bg-' + team.id + '-' + (++badgeCounter);
+    const gid = "bg-" + team.id + "-" + ++badgeCounter;
     return `<svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
       <defs>
         <linearGradient id="${gid}" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -110,21 +279,39 @@
 
   function createTeamLogo(team) {
     var fallback = createBadgeSVG(team);
-    var logoId = 'team-logo-' + team.id + '-' + (++badgeCounter);
-    return '<span class="team-logo-wrap" style="display:inline-block;position:relative;width:100%;height:100%;">' +
-      '<img id="' + logoId + '" src="' + team.logo + '" alt="' + team.name + '" loading="lazy" ' +
-        'style="width:100%;height:100%;object-fit:contain;" ' +
-        'onerror="var i=document.getElementById(\'' + logoId + '\');if(i)i.style.display=\'none\';' +
-        'var f=document.getElementById(\'' + logoId + '-fallback\');if(f)f.style.display=\'block\';" />' +
-      '<span id="' + logoId + '-fallback" style="display:none;position:absolute;top:0;left:0;width:100%;height:100%;">' + fallback + '</span>' +
-      '<noscript>' + fallback + '</noscript></span>';
+    var logoId = "team-logo-" + team.id + "-" + ++badgeCounter;
+    return (
+      '<span class="team-logo-wrap" style="display:inline-block;position:relative;width:100%;height:100%;">' +
+      '<img id="' +
+      logoId +
+      '" src="' +
+      team.logo +
+      '" alt="' +
+      team.name +
+      '" loading="lazy" ' +
+      'style="width:100%;height:100%;object-fit:contain;" ' +
+      "onerror=\"var i=document.getElementById('" +
+      logoId +
+      "');if(i)i.style.display='none';" +
+      "var f=document.getElementById('" +
+      logoId +
+      "-fallback');if(f)f.style.display='block';\" />" +
+      '<span id="' +
+      logoId +
+      '-fallback" style="display:none;position:absolute;top:0;left:0;width:100%;height:100%;">' +
+      fallback +
+      "</span>" +
+      "<noscript>" +
+      fallback +
+      "</noscript></span>"
+    );
   }
 
   // ========================================
   // STORAGE MODULE
   // ========================================
   const Storage = {
-    STORAGE_KEY: 'pl-team-selector-users',
+    STORAGE_KEY: "pl-team-selector-users",
 
     getUsers() {
       try {
@@ -139,7 +326,7 @@
       try {
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(users));
       } catch (e) {
-        console.warn('Storage save failed:', e);
+        console.warn("Storage save failed:", e);
       }
     },
 
@@ -151,7 +338,9 @@
     },
 
     deleteUser(userName) {
-      const users = this.getUsers().filter(function (u) { return u.name !== userName; });
+      const users = this.getUsers().filter(function (u) {
+        return u.name !== userName;
+      });
       this.saveUsers(users);
       return users;
     },
@@ -165,7 +354,7 @@
     getStats() {
       const users = this.getUsers();
       if (!users.length) {
-        return { total: 0, mostSelected: '-', newest: '-' };
+        return { total: 0, mostSelected: "-", newest: "-" };
       }
 
       const teamCounts = {};
@@ -173,7 +362,7 @@
         teamCounts[u.team] = (teamCounts[u.team] || 0) + 1;
       });
 
-      let mostSelected = '-';
+      let mostSelected = "-";
       let maxCount = 0;
       for (var t in teamCounts) {
         if (teamCounts[t] > maxCount) {
@@ -182,27 +371,27 @@
         }
       }
 
-      const newest = users[0] ? users[0].name : '-';
+      const newest = users[0] ? users[0].name : "-";
 
       return {
         total: users.length,
         mostSelected: mostSelected,
-        newest: newest
+        newest: newest,
       };
     },
 
     exportJSON() {
       const data = JSON.stringify(this.getUsers(), null, 2);
-      const blob = new Blob([data], { type: 'application/json' });
+      const blob = new Blob([data], { type: "application/json" });
       const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
+      const a = document.createElement("a");
       a.href = url;
-      a.download = 'pl-team-selector-data.json';
+      a.download = "pl-team-selector-data.json";
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-    }
+    },
   };
 
   // ========================================
@@ -216,12 +405,14 @@
     running: false,
 
     init() {
-      this.canvas = document.getElementById('confetti-canvas');
+      this.canvas = document.getElementById("confetti-canvas");
       if (!this.canvas) return;
-      this.ctx = this.canvas.getContext('2d');
+      this.ctx = this.canvas.getContext("2d");
       this.resize();
       var self = this;
-      window.addEventListener('resize', function () { self.resize(); });
+      window.addEventListener("resize", function () {
+        self.resize();
+      });
     },
 
     resize() {
@@ -235,7 +426,17 @@
       if (!this.canvas) return;
       this.particles = [];
       this.running = true;
-      var colors = ['#8B5CF6', '#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#EC4899', '#8B5CF6', '#FFFFFF', '#A78BFA'];
+      var colors = [
+        "#8B5CF6",
+        "#3B82F6",
+        "#10B981",
+        "#F59E0B",
+        "#EF4444",
+        "#EC4899",
+        "#8B5CF6",
+        "#FFFFFF",
+        "#A78BFA",
+      ];
 
       for (var i = 0; i < 150; i++) {
         this.particles.push({
@@ -249,7 +450,7 @@
           rot: Math.random() * 360,
           rotSpeed: (Math.random() - 0.5) * 8,
           opacity: 1,
-          gravity: 0.05 + Math.random() * 0.05
+          gravity: 0.05 + Math.random() * 0.05,
         });
       }
 
@@ -269,7 +470,7 @@
           }
           self.ctx.save();
           self.ctx.translate(p.x, p.y);
-          self.ctx.rotate(p.rot * Math.PI / 180);
+          self.ctx.rotate((p.rot * Math.PI) / 180);
           self.ctx.globalAlpha = p.opacity;
           self.ctx.fillStyle = p.color;
           self.ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
@@ -290,7 +491,7 @@
       if (this.ctx && this.canvas) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       }
-    }
+    },
   };
 
   // ========================================
@@ -304,12 +505,14 @@
     running: false,
 
     init() {
-      this.canvas = document.getElementById('particles-canvas');
+      this.canvas = document.getElementById("particles-canvas");
       if (!this.canvas) return;
-      this.ctx = this.canvas.getContext('2d');
+      this.ctx = this.canvas.getContext("2d");
       this.resize();
       var self = this;
-      window.addEventListener('resize', function () { self.resize(); });
+      window.addEventListener("resize", function () {
+        self.resize();
+      });
     },
 
     resize() {
@@ -333,7 +536,7 @@
           r: Math.random() * 2.5 + 1,
           vx: (Math.random() - 0.5) * 0.5,
           vy: (Math.random() - 0.5) * 0.5,
-          opacity: Math.random() * 0.3 + 0.1
+          opacity: Math.random() * 0.3 + 0.1,
         });
       }
 
@@ -353,7 +556,7 @@
 
           self.ctx.beginPath();
           self.ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          self.ctx.fillStyle = 'rgba(139, 92, 246, ' + p.opacity + ')';
+          self.ctx.fillStyle = "rgba(139, 92, 246, " + p.opacity + ")";
           self.ctx.fill();
         });
 
@@ -369,7 +572,8 @@
               self.ctx.beginPath();
               self.ctx.moveTo(a.x, a.y);
               self.ctx.lineTo(b.x, b.y);
-              self.ctx.strokeStyle = 'rgba(139, 92, 246, ' + (0.05 * (1 - dist / 120)) + ')';
+              self.ctx.strokeStyle =
+                "rgba(139, 92, 246, " + 0.05 * (1 - dist / 120) + ")";
               self.ctx.lineWidth = 0.5;
               self.ctx.stroke();
             }
@@ -391,7 +595,7 @@
       if (this.ctx && this.canvas) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       }
-    }
+    },
   };
 
   // ========================================
@@ -404,7 +608,7 @@
     init() {
       try {
         this.ctx = new (window.AudioContext || window.webkitAudioContext)();
-        if (this.ctx.state === 'suspended') {
+        if (this.ctx.state === "suspended") {
           this.ctx.resume();
         }
       } catch {
@@ -416,7 +620,7 @@
       if (this.ctx) return;
       try {
         this.ctx = new (window.AudioContext || window.webkitAudioContext)();
-        if (this.ctx.state === 'suspended') {
+        if (this.ctx.state === "suspended") {
           this.ctx.resume();
         }
       } catch {
@@ -427,7 +631,7 @@
     play(type) {
       this.ensureInit();
       if (!this.enabled || !this.ctx) return;
-      if (this.ctx.state === 'suspended') {
+      if (this.ctx.state === "suspended") {
         this.ctx.resume();
       }
 
@@ -435,7 +639,7 @@
       var now = ctx.currentTime;
 
       function tone(freq, dur, startTime, waveType, vol) {
-        waveType = waveType || 'sine';
+        waveType = waveType || "sine";
         vol = vol || 0.08;
         startTime = startTime || now;
         var o = ctx.createOscillator();
@@ -451,41 +655,43 @@
       }
 
       switch (type) {
-        case 'select':
+        case "select":
           tone(520, 0.15);
           break;
-        case 'eliminate':
-          tone(260, 0.25, now, 'sawtooth');
+        case "eliminate":
+          tone(260, 0.25, now, "sawtooth");
           break;
-        case 'winner':
+        case "winner":
           tone(523, 0.3, now);
           tone(659, 0.3, now + 0.15);
           tone(784, 0.3, now + 0.3);
           tone(1047, 0.4, now + 0.45);
           break;
-        case 'click':
+        case "click":
           tone(800, 0.08);
           break;
       }
-    }
+    },
   };
 
   // ========================================
   // TOAST NOTIFICATION
   // ========================================
   function showToast(message, type) {
-    type = type || 'info';
-    var container = document.getElementById('toast-container');
+    type = type || "info";
+    var container = document.getElementById("toast-container");
     if (!container) return;
 
-    var toast = document.createElement('div');
-    toast.className = 'toast ' + type;
+    var toast = document.createElement("div");
+    toast.className = "toast " + type;
     toast.textContent = message;
     container.appendChild(toast);
 
     setTimeout(function () {
-      toast.classList.add('toast-out');
-      setTimeout(function () { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 300);
+      toast.classList.add("toast-out");
+      setTimeout(function () {
+        if (toast.parentNode) toast.parentNode.removeChild(toast);
+      }, 300);
     }, 2500);
   }
 
@@ -493,11 +699,11 @@
   // CONFIRM DIALOG
   // ========================================
   function showConfirm(title, message, onConfirm) {
-    var dialog = document.getElementById('confirm-dialog');
-    var titleEl = document.getElementById('confirm-title');
-    var msgEl = document.getElementById('confirm-message');
-    var okBtn = document.getElementById('confirm-ok');
-    var cancelBtn = document.getElementById('confirm-cancel');
+    var dialog = document.getElementById("confirm-dialog");
+    var titleEl = document.getElementById("confirm-title");
+    var msgEl = document.getElementById("confirm-message");
+    var okBtn = document.getElementById("confirm-ok");
+    var cancelBtn = document.getElementById("confirm-cancel");
 
     if (!dialog || !titleEl || !msgEl || !okBtn || !cancelBtn) return;
 
@@ -507,8 +713,8 @@
 
     function cleanup() {
       dialog.hidden = true;
-      okBtn.removeEventListener('click', handleOk);
-      cancelBtn.removeEventListener('click', handleCancel);
+      okBtn.removeEventListener("click", handleOk);
+      cancelBtn.removeEventListener("click", handleCancel);
     }
 
     function handleOk() {
@@ -520,24 +726,24 @@
       cleanup();
     }
 
-    okBtn.addEventListener('click', handleOk);
-    cancelBtn.addEventListener('click', handleCancel);
+    okBtn.addEventListener("click", handleOk);
+    cancelBtn.addEventListener("click", handleCancel);
 
-    var overlay = dialog.querySelector('.confirm-overlay');
+    var overlay = dialog.querySelector(".confirm-overlay");
     if (overlay) {
-      overlay.addEventListener('click', handleCancel);
+      overlay.addEventListener("click", handleCancel);
     }
 
     function keyHandler(e) {
-      if (e.key === 'Escape') handleCancel();
-      if (e.key === 'Enter') handleOk();
+      if (e.key === "Escape") handleCancel();
+      if (e.key === "Enter") handleOk();
     }
-    document.addEventListener('keydown', keyHandler);
+    document.addEventListener("keydown", keyHandler);
 
     var origCleanup = cleanup;
     cleanup = function () {
       origCleanup();
-      document.removeEventListener('keydown', keyHandler);
+      document.removeEventListener("keydown", keyHandler);
     };
 
     okBtn.focus();
@@ -553,14 +759,16 @@
     var y = (e.clientY || e.touches[0].clientY) - rect.top;
     var size = Math.max(rect.width, rect.height);
 
-    var ripple = document.createElement('span');
-    ripple.className = 'ripple';
-    ripple.style.width = ripple.style.height = size + 'px';
-    ripple.style.left = (x - size / 2) + 'px';
-    ripple.style.top = (y - size / 2) + 'px';
+    var ripple = document.createElement("span");
+    ripple.className = "ripple";
+    ripple.style.width = ripple.style.height = size + "px";
+    ripple.style.left = x - size / 2 + "px";
+    ripple.style.top = y - size / 2 + "px";
     el.appendChild(ripple);
 
-    setTimeout(function () { if (ripple.parentNode) ripple.parentNode.removeChild(ripple); }, 600);
+    setTimeout(function () {
+      if (ripple.parentNode) ripple.parentNode.removeChild(ripple);
+    }, 600);
   }
 
   // ========================================
@@ -568,31 +776,46 @@
   // ========================================
   function formatDate(dateStr) {
     var d = new Date(dateStr);
-    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+    var months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    return d.getDate() + " " + months[d.getMonth()] + " " + d.getFullYear();
   }
 
   function todayStr() {
     var d = new Date();
-    return d.toISOString().split('T')[0];
+    return d.toISOString().split("T")[0];
   }
 
   // ========================================
   // PAGE NAVIGATION
   // ========================================
-  let currentScreen = 'splash';
+  let currentScreen = "splash";
 
   function showScreen(screenId) {
-    var screens = document.querySelectorAll('.screen');
-    screens.forEach(function (s) { s.classList.remove('active'); });
+    var screens = document.querySelectorAll(".screen");
+    screens.forEach(function (s) {
+      s.classList.remove("active");
+    });
 
     var target = document.getElementById(screenId);
     if (target) {
-      target.classList.add('active');
+      target.classList.add("active");
       currentScreen = screenId;
     }
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   // ========================================
@@ -616,7 +839,7 @@
 
       // Splash -> Home
       setTimeout(function () {
-        showScreen('home-screen');
+        showScreen("home-screen");
         App.renderUsers();
         App.renderStats();
       }, 2000);
@@ -630,153 +853,180 @@
       var self = this;
 
       // Start button
-      var btnStart = document.getElementById('btn-start');
+      var btnStart = document.getElementById("btn-start");
       if (btnStart) {
-        btnStart.addEventListener('click', function () {
-          Sounds.play('click');
-          showScreen('name-screen');
-          document.getElementById('user-name-input').value = '';
-          document.getElementById('name-error').textContent = '';
-          document.getElementById('user-name-input').classList.remove('error');
-          setTimeout(function () { document.getElementById('user-name-input').focus(); }, 350);
+        btnStart.addEventListener("click", function () {
+          Sounds.play("click");
+          showScreen("name-screen");
+          document.getElementById("user-name-input").value = "";
+          document.getElementById("name-error").textContent = "";
+          document.getElementById("user-name-input").classList.remove("error");
+          setTimeout(function () {
+            document.getElementById("user-name-input").focus();
+          }, 350);
         });
       }
 
       // Back to home from name screen
-      document.getElementById('btn-back-name').addEventListener('click', function () {
-        Sounds.play('click');
-        showScreen('home-screen');
-      });
+      document
+        .getElementById("btn-back-name")
+        .addEventListener("click", function () {
+          Sounds.play("click");
+          showScreen("home-screen");
+        });
 
       // Back to home from selection
-      document.getElementById('btn-back-selection').addEventListener('click', function () {
-        Sounds.play('click');
-        showScreen('home-screen');
-      });
+      document
+        .getElementById("btn-back-selection")
+        .addEventListener("click", function () {
+          Sounds.play("click");
+          showScreen("home-screen");
+        });
 
       // Continue button
-      document.getElementById('btn-continue').addEventListener('click', function () {
-        self.handleContinue();
-      });
+      document
+        .getElementById("btn-continue")
+        .addEventListener("click", function () {
+          self.handleContinue();
+        });
 
       // Enter key on name input
-      document.getElementById('user-name-input').addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          self.handleContinue();
-        }
-      });
+      document
+        .getElementById("user-name-input")
+        .addEventListener("keydown", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            self.handleContinue();
+          }
+        });
 
       // Real-time validation
-      document.getElementById('user-name-input').addEventListener('input', function () {
-        var el = document.getElementById('name-error');
-        var input = document.getElementById('user-name-input');
-        el.textContent = '';
-        input.classList.remove('error');
-      });
+      document
+        .getElementById("user-name-input")
+        .addEventListener("input", function () {
+          var el = document.getElementById("name-error");
+          var input = document.getElementById("user-name-input");
+          el.textContent = "";
+          input.classList.remove("error");
+        });
 
       // Select team button
-      document.getElementById('btn-select').addEventListener('click', function () {
-        self.selectTeam();
-      });
+      document
+        .getElementById("btn-select")
+        .addEventListener("click", function () {
+          self.selectTeam();
+        });
 
       // Return home from winner
-      document.getElementById('btn-home').addEventListener('click', function () {
-        Sounds.play('click');
-        Confetti.stop();
-        showScreen('home-screen');
-        self.renderUsers();
-        self.renderStats();
-      });
+      document
+        .getElementById("btn-home")
+        .addEventListener("click", function () {
+          Sounds.play("click");
+          Confetti.stop();
+          showScreen("home-screen");
+          self.renderUsers();
+          self.renderStats();
+        });
 
       // Search
-      document.getElementById('search-users').addEventListener('input', function () {
-        self.renderUsers();
-      });
+      document
+        .getElementById("search-users")
+        .addEventListener("input", function () {
+          self.renderUsers();
+        });
 
       // Sort
-      document.getElementById('sort-users').addEventListener('change', function () {
-        self.renderUsers();
-      });
+      document
+        .getElementById("sort-users")
+        .addEventListener("change", function () {
+          self.renderUsers();
+        });
 
       // Export
-      document.getElementById('btn-export').addEventListener('click', function () {
-        var users = Storage.getUsers();
-        if (!users.length) {
-          showToast('No data to export', 'error');
-          return;
-        }
-        Storage.exportJSON();
-        showToast('Data exported successfully', 'success');
-      });
+      document
+        .getElementById("btn-export")
+        .addEventListener("click", function () {
+          var users = Storage.getUsers();
+          if (!users.length) {
+            showToast("No data to export", "error");
+            return;
+          }
+          Storage.exportJSON();
+          showToast("Data exported successfully", "success");
+        });
     },
 
     // ---- Continue Handler ----
     handleContinue() {
-      var input = document.getElementById('user-name-input');
-      var errorEl = document.getElementById('name-error');
+      var input = document.getElementById("user-name-input");
+      var errorEl = document.getElementById("name-error");
       var name = input.value.trim();
 
       if (!name) {
-        errorEl.textContent = 'Please enter your name';
-        input.classList.add('error');
+        errorEl.textContent = "Please enter your name";
+        input.classList.add("error");
         input.focus();
         return;
       }
 
       if (Storage.userExists(name)) {
-        errorEl.textContent = 'This name already exists. Please use another.';
-        input.classList.add('error');
+        errorEl.textContent = "This name already exists. Please use another.";
+        input.classList.add("error");
         input.focus();
         return;
       }
 
       this.user = name;
-      Sounds.play('click');
+      Sounds.play("click");
       this.startSelection();
     },
 
     // ---- Start Selection ----
     startSelection() {
-      this.remainingTeams = TEAMS.map(function (t) { return Object.assign({}, t); });
+      this.remainingTeams = TEAMS.map(function (t) {
+        return Object.assign({}, t);
+      });
       this.currentTeamEliminated = null;
       this.isEliminating = false;
 
-      var el = document.getElementById('eliminated-display');
-      if (el) { el.className = 'eliminated-display'; el.innerHTML = ''; }
+      var el = document.getElementById("eliminated-display");
+      if (el) {
+        el.className = "eliminated-display";
+        el.innerHTML = "";
+      }
 
-      showScreen('selection-screen');
+      showScreen("selection-screen");
       this.renderTeams();
       this.updateCounter();
     },
 
     // ---- Render Teams ----
     renderTeams() {
-      var grid = document.getElementById('teams-grid');
+      var grid = document.getElementById("teams-grid");
       if (!grid) return;
-      grid.innerHTML = '';
+      grid.innerHTML = "";
 
       // Remaining teams grow bigger as teams get eliminated
       // (grid rows + flexible logos handle the sizing automatically)
       var n = this.remainingTeams.length;
       if (n <= 3) {
-        grid.setAttribute('data-few', 'true');
+        grid.setAttribute("data-few", "true");
       } else {
-        grid.removeAttribute('data-few');
+        grid.removeAttribute("data-few");
       }
 
       var self = this;
       this.remainingTeams.forEach(function (team) {
-        var card = document.createElement('div');
-        card.className = 'team-card scale-in';
+        var card = document.createElement("div");
+        card.className = "team-card scale-in";
         card.dataset.id = team.id;
 
-        var logoDiv = document.createElement('div');
-        logoDiv.className = 'team-card-logo';
+        var logoDiv = document.createElement("div");
+        logoDiv.className = "team-card-logo";
         logoDiv.innerHTML = createTeamLogo(team);
 
-        var nameEl = document.createElement('div');
-        nameEl.className = 'team-card-name';
+        var nameEl = document.createElement("div");
+        nameEl.className = "team-card-name";
         nameEl.textContent = team.name;
 
         card.appendChild(logoDiv);
@@ -787,25 +1037,29 @@
 
     // ---- Update Counter ----
     updateCounter() {
-      var remaining = document.getElementById('teams-remaining');
-      var total = document.getElementById('teams-total');
-      var progress = document.getElementById('progress-bar');
+      var remaining = document.getElementById("teams-remaining");
+      var total = document.getElementById("teams-total");
+      var progress = document.getElementById("progress-bar");
 
       if (remaining) remaining.textContent = this.remainingTeams.length;
       if (total) total.textContent = TEAMS.length;
 
       if (progress) {
-        var pct = ((TEAMS.length - this.remainingTeams.length) / TEAMS.length) * 100;
-        progress.style.width = pct + '%';
+        var pct =
+          ((TEAMS.length - this.remainingTeams.length) / TEAMS.length) * 100;
+        progress.style.width = pct + "%";
       }
     },
 
     // ---- Show Eliminated Team ----
     showEliminated(team) {
-      var el = document.getElementById('eliminated-display');
+      var el = document.getElementById("eliminated-display");
       if (!el) return;
-      el.innerHTML = '<svg class="eliminated-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> ' + team.name + ' eliminated';
-      el.className = 'eliminated-display has-team';
+      el.innerHTML =
+        '<svg class="eliminated-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> ' +
+        team.name +
+        " eliminated";
+      el.className = "eliminated-display has-team";
     },
 
     // ---- Select Team ----
@@ -815,10 +1069,10 @@
 
       this.isEliminating = true;
 
-      var btn = document.getElementById('btn-select');
+      var btn = document.getElementById("btn-select");
       if (btn) {
         btn.disabled = true;
-        btn.style.opacity = '0.5';
+        btn.style.opacity = "0.5";
       }
 
       var randomIndex = Math.floor(Math.random() * this.remainingTeams.length);
@@ -828,11 +1082,11 @@
 
       this.showEliminated(eliminated);
 
-      Sounds.play('select');
+      Sounds.play("select");
 
       // Animate elimination
       var self = this;
-      var cards = document.querySelectorAll('.team-card');
+      var cards = document.querySelectorAll(".team-card");
       var targetCard = null;
       cards.forEach(function (c) {
         if (parseInt(c.dataset.id) === eliminated.id) {
@@ -841,10 +1095,10 @@
       });
 
       if (targetCard) {
-        targetCard.classList.add('eliminating');
+        targetCard.classList.add("eliminating");
 
         setTimeout(function () {
-          Sounds.play('eliminate');
+          Sounds.play("eliminate");
 
           self.remainingTeams.splice(randomIndex, 1);
 
@@ -852,7 +1106,7 @@
 
           if (btn) {
             btn.disabled = false;
-            btn.style.opacity = '1';
+            btn.style.opacity = "1";
           }
 
           if (self.remainingTeams.length === 1) {
@@ -867,7 +1121,7 @@
         self.isEliminating = false;
         if (btn) {
           btn.disabled = false;
-          btn.style.opacity = '1';
+          btn.style.opacity = "1";
         }
         if (self.remainingTeams.length === 1) {
           self.showWinner(self.remainingTeams[0]);
@@ -880,8 +1134,8 @@
 
     // ---- Show Winner ----
     showWinner(team) {
-      var logoEl = document.getElementById('winner-logo');
-      var nameEl = document.getElementById('winner-name');
+      var logoEl = document.getElementById("winner-logo");
+      var nameEl = document.getElementById("winner-name");
 
       if (logoEl) {
         logoEl.innerHTML = createTeamLogo(team);
@@ -891,9 +1145,9 @@
         nameEl.textContent = team.name;
       }
 
-      showScreen('winner-screen');
+      showScreen("winner-screen");
 
-      Sounds.play('winner');
+      Sounds.play("winner");
 
       setTimeout(function () {
         Confetti.start();
@@ -914,7 +1168,7 @@
         name: this.user,
         team: this.winnerTeam.name,
         teamId: this.winnerTeam.id,
-        date: todayStr()
+        date: todayStr(),
       };
 
       // Always keep a local copy, then push to the database
@@ -925,11 +1179,17 @@
       var self = this;
       DB.addResult(userData).then(function (saved) {
         if (saved) {
-          showToast('Result saved to the database for ' + self.user + '!', 'success');
+          showToast(
+            "Result saved to the database for " + self.user + "!",
+            "success",
+          );
         } else if (DB.isConfigured()) {
-          showToast('Saved in browser only (database unreachable)', 'error');
+          showToast("Saved in browser only (database unreachable)", "error");
         } else {
-          showToast('Result saved automatically for ' + self.user + '!', 'success');
+          showToast(
+            "Result saved automatically for " + self.user + "!",
+            "success",
+          );
         }
       });
     },
@@ -939,124 +1199,167 @@
       var self = this;
       DB.deleteResult(name).then(function (ok) {
         if (ok === null && DB.isConfigured()) {
-          showToast('Could not delete from the database', 'error');
+          showToast("Could not delete from the database", "error");
           return;
         }
         Storage.deleteUser(name);
         self.renderUsers();
         self.renderStats();
-        showToast(name + ' has been removed', 'success');
+        showToast(name + " has been removed", "success");
       });
     },
 
     // ---- Render Users ----
     renderUsers() {
-      var container = document.getElementById('users-container');
-      var empty = document.getElementById('users-empty');
+      var container = document.getElementById("users-container");
+      var empty = document.getElementById("users-empty");
       if (!container) return;
 
       // Pull latest results from the database, then re-render
       var self = this;
       if (DB.isConfigured() && !this._dbSyncing) {
         this._dbSyncing = true;
-        DB.getResults().then(function (rows) {
-          self._dbSyncing = false;
-          if (!rows) return;
-          Storage.saveUsers(rows.map(function (r) {
-            return { name: r.name, team: r.team, teamId: r.team_id, date: r.date };
-          }));
-          self.renderUsers();
-          self.renderStats();
-        }).catch(function () {
-          self._dbSyncing = false;
-        });
+        DB.getResults()
+          .then(function (rows) {
+            self._dbSyncing = false;
+            if (!rows) return;
+            Storage.saveUsers(
+              rows.map(function (r) {
+                return {
+                  name: r.name,
+                  team: r.team,
+                  teamId: r.team_id,
+                  date: r.date,
+                };
+              }),
+            );
+            self.renderUsers();
+            self.renderStats();
+          })
+          .catch(function () {
+            self._dbSyncing = false;
+          });
       }
 
       var users = Storage.getUsers();
-      var searchTerm = document.getElementById('search-users').value.toLowerCase().trim();
-      var sortBy = document.getElementById('sort-users').value;
+      var searchTerm = document
+        .getElementById("search-users")
+        .value.toLowerCase()
+        .trim();
+      var sortBy = document.getElementById("sort-users").value;
 
       // Filter
       if (searchTerm) {
         users = users.filter(function (u) {
-          return u.name.toLowerCase().includes(searchTerm) ||
-                 u.team.toLowerCase().includes(searchTerm);
+          return (
+            u.name.toLowerCase().includes(searchTerm) ||
+            u.team.toLowerCase().includes(searchTerm)
+          );
         });
       }
 
       // Sort
       switch (sortBy) {
-        case 'newest':
-          users.sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
+        case "newest":
+          users.sort(function (a, b) {
+            return new Date(b.date) - new Date(a.date);
+          });
           break;
-        case 'oldest':
-          users.sort(function (a, b) { return new Date(a.date) - new Date(b.date); });
+        case "oldest":
+          users.sort(function (a, b) {
+            return new Date(a.date) - new Date(b.date);
+          });
           break;
-        case 'name':
-          users.sort(function (a, b) { return a.name.localeCompare(b.name); });
+        case "name":
+          users.sort(function (a, b) {
+            return a.name.localeCompare(b.name);
+          });
           break;
-        case 'team':
-          users.sort(function (a, b) { return a.team.localeCompare(b.team); });
+        case "team":
+          users.sort(function (a, b) {
+            return a.team.localeCompare(b.team);
+          });
           break;
       }
 
       // Show/hide empty state
       if (empty) {
         if (users.length === 0) {
-          empty.style.display = 'block';
+          empty.style.display = "block";
         } else {
-          empty.style.display = 'none';
+          empty.style.display = "none";
         }
       }
 
       // Clear previous cards (but keep empty)
-      var cards = container.querySelectorAll('.user-card');
-      cards.forEach(function (c) { c.remove(); });
+      var cards = container.querySelectorAll(".user-card");
+      cards.forEach(function (c) {
+        c.remove();
+      });
 
       // Render each user
       users.forEach(function (user) {
-        var team = TEAMS.find(function (t) { return t.id === user.teamId || t.name === user.team; });
+        var team = TEAMS.find(function (t) {
+          return t.id === user.teamId || t.name === user.team;
+        });
         if (!team) team = TEAMS[0];
 
-        var card = document.createElement('div');
-        card.className = 'user-card';
-        card.setAttribute('role', 'listitem');
+        var card = document.createElement("div");
+        card.className = "user-card";
+        card.setAttribute("role", "listitem");
 
         // Avatar
-        var avatar = document.createElement('div');
-        avatar.className = 'user-avatar';
+        var avatar = document.createElement("div");
+        avatar.className = "user-avatar";
         avatar.textContent = user.name.charAt(0).toUpperCase();
 
         // Info
-        var info = document.createElement('div');
-        info.className = 'user-info';
+        var info = document.createElement("div");
+        info.className = "user-info";
         info.innerHTML =
-          '<div class="user-name">' + escapeHtml(user.name) + '</div>' +
+          '<div class="user-name">' +
+          escapeHtml(user.name) +
+          "</div>" +
           '<div class="user-team">' +
-            '<span class="user-team-logo">' + createTeamLogo(team) + '</span>' +
-            '<span>' + escapeHtml(user.team) + '</span>' +
-          '</div>' +
-          '<div class="user-date">' + formatDate(user.date) + '</div>';
+          '<span class="user-team-logo">' +
+          createTeamLogo(team) +
+          "</span>" +
+          "<span>" +
+          escapeHtml(user.team) +
+          "</span>" +
+          "</div>" +
+          '<div class="user-date">' +
+          formatDate(user.date) +
+          "</div>";
 
         // Delete button
-        var delBtn = document.createElement('button');
-        delBtn.className = 'user-delete';
-        delBtn.setAttribute('aria-label', 'Delete ' + user.name);
-        delBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>';
+        var delBtn = document.createElement("button");
+        delBtn.className = "user-delete";
+        delBtn.setAttribute("aria-label", "Delete " + user.name);
+        delBtn.innerHTML =
+          '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>';
 
-        delBtn.addEventListener('click', function (e) {
+        delBtn.addEventListener("click", function (e) {
           e.stopPropagation();
-          showConfirm('Delete Result', 'Remove ' + user.name + ' from saved results?', function () {
-            self.deleteUserResult(user.name);
-          });
+          showConfirm(
+            "Delete Result",
+            "Remove " + user.name + " from saved results?",
+            function () {
+              self.deleteUserResult(user.name);
+            },
+          );
         });
 
-        delBtn.addEventListener('mousedown', function (e) {
+        delBtn.addEventListener("mousedown", function (e) {
           if (e.button === 0) createRipple(e);
         });
-        delBtn.addEventListener('touchstart', function (e) {
-          createRipple(e);
-        }, { passive: true });
+        delBtn.addEventListener(
+          "touchstart",
+          function (e) {
+            createRipple(e);
+          },
+          { passive: true },
+        );
 
         card.appendChild(avatar);
         card.appendChild(info);
@@ -1068,21 +1371,21 @@
     // ---- Render Stats ----
     renderStats() {
       var stats = Storage.getStats();
-      var totalEl = document.getElementById('stat-total');
-      var popularEl = document.getElementById('stat-popular');
-      var newestEl = document.getElementById('stat-newest');
+      var totalEl = document.getElementById("stat-total");
+      var popularEl = document.getElementById("stat-popular");
+      var newestEl = document.getElementById("stat-newest");
 
       if (totalEl) totalEl.textContent = stats.total;
       if (popularEl) popularEl.textContent = stats.mostSelected;
       if (newestEl) newestEl.textContent = stats.newest;
-    }
+    },
   };
 
   // ========================================
   // UTILITY FUNCTIONS
   // ========================================
   function escapeHtml(str) {
-    var div = document.createElement('div');
+    var div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   }
@@ -1090,25 +1393,31 @@
   // ========================================
   // RIPPLE DELEGATION (attach to all buttons)
   // ========================================
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.btn, .user-delete, .btn-back').forEach(function (btn) {
-      if (!btn.classList.contains('no-ripple')) {
-        btn.addEventListener('mousedown', function (e) {
-          if (e.button === 0) createRipple(e);
-        });
-        btn.addEventListener('touchstart', function (e) {
-          createRipple(e);
-        }, { passive: true });
-      }
-    });
+  document.addEventListener("DOMContentLoaded", function () {
+    document
+      .querySelectorAll(".btn, .user-delete, .btn-back")
+      .forEach(function (btn) {
+        if (!btn.classList.contains("no-ripple")) {
+          btn.addEventListener("mousedown", function (e) {
+            if (e.button === 0) createRipple(e);
+          });
+          btn.addEventListener(
+            "touchstart",
+            function (e) {
+              createRipple(e);
+            },
+            { passive: true },
+          );
+        }
+      });
   });
 
   // ========================================
   // SERVICE WORKER REGISTRATION
   // ========================================
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('sw.js').catch(function () {
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("sw.js").catch(function () {
         // SW registration failed - still works as normal site
       });
     });
@@ -1117,8 +1426,7 @@
   // ========================================
   // LAUNCH THE APP
   // ========================================
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener("DOMContentLoaded", function () {
     App.init();
   });
-
 })();
