@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pl-selector-v5';
+const CACHE_NAME = 'pl-selector-v6';
 
 const ASSETS = [
   '.',

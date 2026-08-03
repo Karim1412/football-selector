@@ -33,6 +33,64 @@
   ];
 
   // ========================================
+  // SUPABASE CONFIG
+  // 1) Create a free project at supabase.com
+  // 2) Run the SQL from the README/instructions
+  // 3) Paste your project URL + anon key below
+  // Leave empty to keep results in the browser.
+  // ========================================
+  var SUPABASE_URL = '';
+  var SUPABASE_ANON_KEY = '';
+  var SUPABASE_TABLE = 'results';
+
+  var DB = {
+    isConfigured() {
+      return !!(SUPABASE_URL && SUPABASE_ANON_KEY);
+    },
+
+    headers() {
+      return {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation'
+      };
+    },
+
+    getResults() {
+      if (!this.isConfigured()) return Promise.resolve(null);
+      return fetch(SUPABASE_URL + '/rest/v1/' + SUPABASE_TABLE + '?select=*&order=created_at.desc', {
+        headers: this.headers()
+      }).then(function (r) { return r.json(); })
+        .catch(function () { return null; });
+    },
+
+    addResult(user) {
+      if (!this.isConfigured()) return Promise.resolve(null);
+      return fetch(SUPABASE_URL + '/rest/v1/' + SUPABASE_TABLE, {
+        method: 'POST',
+        headers: this.headers(),
+        body: JSON.stringify({
+          name: user.name,
+          team: user.team,
+          team_id: user.teamId,
+          date: user.date
+        })
+      }).then(function (r) { return r.json(); })
+        .catch(function () { return null; });
+    },
+
+    deleteResult(name) {
+      if (!this.isConfigured()) return Promise.resolve(null);
+      return fetch(SUPABASE_URL + '/rest/v1/' + SUPABASE_TABLE + '?name=eq.' + encodeURIComponent(name), {
+        method: 'DELETE',
+        headers: this.headers()
+      }).then(function () { return true; })
+        .catch(function () { return null; });
+    }
+  };
+
+  // ========================================
   // TEAM LOGO RENDERER
   // ========================================
   var badgeCounter = 0;
@@ -88,6 +146,12 @@
     addUser(user) {
       const users = this.getUsers();
       users.unshift(user);
+      this.saveUsers(users);
+      return users;
+    },
+
+    deleteUser(userName) {
+      const users = this.getUsers().filter(function (u) { return u.name !== userName; });
       this.saveUsers(users);
       return users;
     },
@@ -426,6 +490,60 @@
   }
 
   // ========================================
+  // CONFIRM DIALOG
+  // ========================================
+  function showConfirm(title, message, onConfirm) {
+    var dialog = document.getElementById('confirm-dialog');
+    var titleEl = document.getElementById('confirm-title');
+    var msgEl = document.getElementById('confirm-message');
+    var okBtn = document.getElementById('confirm-ok');
+    var cancelBtn = document.getElementById('confirm-cancel');
+
+    if (!dialog || !titleEl || !msgEl || !okBtn || !cancelBtn) return;
+
+    titleEl.textContent = title;
+    msgEl.textContent = message;
+    dialog.hidden = false;
+
+    function cleanup() {
+      dialog.hidden = true;
+      okBtn.removeEventListener('click', handleOk);
+      cancelBtn.removeEventListener('click', handleCancel);
+    }
+
+    function handleOk() {
+      cleanup();
+      if (onConfirm) onConfirm();
+    }
+
+    function handleCancel() {
+      cleanup();
+    }
+
+    okBtn.addEventListener('click', handleOk);
+    cancelBtn.addEventListener('click', handleCancel);
+
+    var overlay = dialog.querySelector('.confirm-overlay');
+    if (overlay) {
+      overlay.addEventListener('click', handleCancel);
+    }
+
+    function keyHandler(e) {
+      if (e.key === 'Escape') handleCancel();
+      if (e.key === 'Enter') handleOk();
+    }
+    document.addEventListener('keydown', keyHandler);
+
+    var origCleanup = cleanup;
+    cleanup = function () {
+      origCleanup();
+      document.removeEventListener('keydown', keyHandler);
+    };
+
+    okBtn.focus();
+  }
+
+  // ========================================
   // RIPPLE EFFECT
   // ========================================
   function createRipple(e) {
@@ -641,9 +759,8 @@
       // Remaining teams grow bigger as teams get eliminated
       var n = this.remainingTeams.length;
       var progress = 1 - (n / TEAMS.length);
-      grid.style.setProperty('--card-logo', (44 + progress * 90).toFixed(1) + 'px');
-      grid.style.setProperty('--card-min-h', (110 + progress * 120).toFixed(1) + 'px');
-      grid.style.setProperty('--card-name', (0.72 + progress * 0.38).toFixed(2) + 'rem');
+      grid.style.setProperty('--card-logo', (36 + progress * 64).toFixed(1) + 'px');
+      grid.style.setProperty('--card-name', (0.6 + progress * 0.3).toFixed(2) + 'rem');
       if (n <= 3) {
         grid.setAttribute('data-few', 'true');
       } else {
@@ -802,11 +919,36 @@
         date: todayStr()
       };
 
+      // Always keep a local copy, then push to the database
       Storage.addUser(userData);
-      showToast('Result saved automatically for ' + this.user + '!', 'success');
-
       this.renderUsers();
       this.renderStats();
+
+      var self = this;
+      DB.addResult(userData).then(function (saved) {
+        if (saved) {
+          showToast('Result saved to the database for ' + self.user + '!', 'success');
+        } else if (DB.isConfigured()) {
+          showToast('Saved in browser only (database unreachable)', 'error');
+        } else {
+          showToast('Result saved automatically for ' + self.user + '!', 'success');
+        }
+      });
+    },
+
+    // ---- Delete Result ----
+    deleteUserResult(name) {
+      var self = this;
+      DB.deleteResult(name).then(function (ok) {
+        if (ok === null && DB.isConfigured()) {
+          showToast('Could not delete from the database', 'error');
+          return;
+        }
+        Storage.deleteUser(name);
+        self.renderUsers();
+        self.renderStats();
+        showToast(name + ' has been removed', 'success');
+      });
     },
 
     // ---- Render Users ----
@@ -814,6 +956,23 @@
       var container = document.getElementById('users-container');
       var empty = document.getElementById('users-empty');
       if (!container) return;
+
+      // Pull latest results from the database, then re-render
+      var self = this;
+      if (DB.isConfigured() && !this._dbSyncing) {
+        this._dbSyncing = true;
+        DB.getResults().then(function (rows) {
+          self._dbSyncing = false;
+          if (!rows) return;
+          Storage.saveUsers(rows.map(function (r) {
+            return { name: r.name, team: r.team, teamId: r.team_id, date: r.date };
+          }));
+          self.renderUsers();
+          self.renderStats();
+        }).catch(function () {
+          self._dbSyncing = false;
+        });
+      }
 
       var users = Storage.getUsers();
       var searchTerm = document.getElementById('search-users').value.toLowerCase().trim();
@@ -881,8 +1040,29 @@
           '</div>' +
           '<div class="user-date">' + formatDate(user.date) + '</div>';
 
+        // Delete button
+        var delBtn = document.createElement('button');
+        delBtn.className = 'user-delete';
+        delBtn.setAttribute('aria-label', 'Delete ' + user.name);
+        delBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>';
+
+        delBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          showConfirm('Delete Result', 'Remove ' + user.name + ' from saved results?', function () {
+            self.deleteUserResult(user.name);
+          });
+        });
+
+        delBtn.addEventListener('mousedown', function (e) {
+          if (e.button === 0) createRipple(e);
+        });
+        delBtn.addEventListener('touchstart', function (e) {
+          createRipple(e);
+        }, { passive: true });
+
         card.appendChild(avatar);
         card.appendChild(info);
+        card.appendChild(delBtn);
         container.appendChild(card);
       });
     },
@@ -913,7 +1093,7 @@
   // RIPPLE DELEGATION (attach to all buttons)
   // ========================================
   document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.btn, .btn-back').forEach(function (btn) {
+    document.querySelectorAll('.btn, .user-delete, .btn-back').forEach(function (btn) {
       if (!btn.classList.contains('no-ripple')) {
         btn.addEventListener('mousedown', function (e) {
           if (e.button === 0) createRipple(e);

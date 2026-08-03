@@ -98,7 +98,7 @@
       <div class="home-footer-actions">
         <button id="btn-export" class="btn btn-secondary btn-sm" aria-label="Export data">Export</button>
       </div>
-      <p class="history-note">Results are saved permanently and cannot be deleted.</p>
+      <p class="history-note">Results are saved automatically to the database.</p>
     </div>
 
     <!-- NAME SCREEN -->
@@ -176,6 +176,19 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- CONFIRM DIALOG -->
+  <div id="confirm-dialog" class="confirm-dialog" hidden>
+    <div class="confirm-overlay"></div>
+    <div class="confirm-content" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title">
+      <h3 class="confirm-title" id="confirm-title"></h3>
+      <p class="confirm-message" id="confirm-message"></p>
+      <div class="confirm-actions">
+        <button id="confirm-cancel" class="btn btn-secondary" aria-label="Cancel">Cancel</button>
+        <button id="confirm-ok" class="btn btn-danger" aria-label="Confirm">Confirm</button>
+      </div>
+    </div>
   </div>
 
   <div id="toast-container" class="toast-container" role="status" aria-live="polite"></div>
