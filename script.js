@@ -179,7 +179,7 @@
   // 3) Paste your project URL + anon key below
   // Leave empty to keep results in the browser.
   // ========================================
-  var SUPABASE_URL = "https://zqjtrhwxmldoyhctvkrq.supabase.co/rest/v1/";
+  var SUPABASE_URL = "https://zqjtrhwxmldoyhctvkrq.supabase.co";
   var SUPABASE_ANON_KEY =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxanRyaHd4bWxkb3loY3R2a3JxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU3Nzc1NDAsImV4cCI6MjEwMTM1MzU0MH0.kS60nIBH4XxXjjiZnBx53hCnTI3luTHnRslJ0xIj5tM";
   var SUPABASE_TABLE = "results";
@@ -1240,22 +1240,20 @@
   // RIPPLE DELEGATION (attach to all buttons)
   // ========================================
   document.addEventListener("DOMContentLoaded", function () {
-    document
-      .querySelectorAll(".btn, .btn-back")
-      .forEach(function (btn) {
-        if (!btn.classList.contains("no-ripple")) {
-          btn.addEventListener("mousedown", function (e) {
-            if (e.button === 0) createRipple(e);
-          });
-          btn.addEventListener(
-            "touchstart",
-            function (e) {
-              createRipple(e);
-            },
-            { passive: true },
-          );
-        }
-      });
+    document.querySelectorAll(".btn, .btn-back").forEach(function (btn) {
+      if (!btn.classList.contains("no-ripple")) {
+        btn.addEventListener("mousedown", function (e) {
+          if (e.button === 0) createRipple(e);
+        });
+        btn.addEventListener(
+          "touchstart",
+          function (e) {
+            createRipple(e);
+          },
+          { passive: true },
+        );
+      }
+    });
   });
 
   // ========================================
