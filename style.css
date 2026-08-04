@@ -622,17 +622,6 @@ body {
   margin-top: 1px;
 }
 
-/* --- Home Footer --- */
-.home-footer-actions {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  padding-top: 8px;
-  position: relative;
-  z-index: 1;
-  flex-wrap: wrap;
-}
-
 .history-note {
   font-size: 0.72rem;
   color: var(--text-tertiary);

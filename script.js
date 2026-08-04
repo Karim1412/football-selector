@@ -350,19 +350,6 @@
         newest: newest,
       };
     },
-
-    exportJSON() {
-      const data = JSON.stringify(this.getUsers(), null, 2);
-      const blob = new Blob([data], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "pl-team-selector-data.json";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    },
   };
 
   // ========================================
@@ -857,19 +844,6 @@
         .getElementById("sort-users")
         .addEventListener("change", function () {
           self.renderUsers();
-        });
-
-      // Export
-      document
-        .getElementById("btn-export")
-        .addEventListener("click", function () {
-          var users = Storage.getUsers();
-          if (!users.length) {
-            showToast("No data to export", "error");
-            return;
-          }
-          Storage.exportJSON();
-          showToast("Data exported successfully", "success");
         });
     },
 
