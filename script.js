@@ -236,27 +236,6 @@
           return null;
         });
     },
-
-    deleteResult(name) {
-      if (!this.isConfigured()) return Promise.resolve(null);
-      return fetch(
-        SUPABASE_URL +
-          "/rest/v1/" +
-          SUPABASE_TABLE +
-          "?name=eq." +
-          encodeURIComponent(name),
-        {
-          method: "DELETE",
-          headers: this.headers(),
-        },
-      )
-        .then(function () {
-          return true;
-        })
-        .catch(function () {
-          return null;
-        });
-    },
   };
 
   // ========================================
@@ -333,14 +312,6 @@
     addUser(user) {
       const users = this.getUsers();
       users.unshift(user);
-      this.saveUsers(users);
-      return users;
-    },
-
-    deleteUser(userName) {
-      const users = this.getUsers().filter(function (u) {
-        return u.name !== userName;
-      });
       this.saveUsers(users);
       return users;
     },
@@ -693,60 +664,6 @@
         if (toast.parentNode) toast.parentNode.removeChild(toast);
       }, 300);
     }, 2500);
-  }
-
-  // ========================================
-  // CONFIRM DIALOG
-  // ========================================
-  function showConfirm(title, message, onConfirm) {
-    var dialog = document.getElementById("confirm-dialog");
-    var titleEl = document.getElementById("confirm-title");
-    var msgEl = document.getElementById("confirm-message");
-    var okBtn = document.getElementById("confirm-ok");
-    var cancelBtn = document.getElementById("confirm-cancel");
-
-    if (!dialog || !titleEl || !msgEl || !okBtn || !cancelBtn) return;
-
-    titleEl.textContent = title;
-    msgEl.textContent = message;
-    dialog.hidden = false;
-
-    function cleanup() {
-      dialog.hidden = true;
-      okBtn.removeEventListener("click", handleOk);
-      cancelBtn.removeEventListener("click", handleCancel);
-    }
-
-    function handleOk() {
-      cleanup();
-      if (onConfirm) onConfirm();
-    }
-
-    function handleCancel() {
-      cleanup();
-    }
-
-    okBtn.addEventListener("click", handleOk);
-    cancelBtn.addEventListener("click", handleCancel);
-
-    var overlay = dialog.querySelector(".confirm-overlay");
-    if (overlay) {
-      overlay.addEventListener("click", handleCancel);
-    }
-
-    function keyHandler(e) {
-      if (e.key === "Escape") handleCancel();
-      if (e.key === "Enter") handleOk();
-    }
-    document.addEventListener("keydown", keyHandler);
-
-    var origCleanup = cleanup;
-    cleanup = function () {
-      origCleanup();
-      document.removeEventListener("keydown", keyHandler);
-    };
-
-    okBtn.focus();
   }
 
   // ========================================
@@ -1194,21 +1111,6 @@
       });
     },
 
-    // ---- Delete Result ----
-    deleteUserResult(name) {
-      var self = this;
-      DB.deleteResult(name).then(function (ok) {
-        if (ok === null && DB.isConfigured()) {
-          showToast("Could not delete from the database", "error");
-          return;
-        }
-        Storage.deleteUser(name);
-        self.renderUsers();
-        self.renderStats();
-        showToast(name + " has been removed", "success");
-      });
-    },
-
     // ---- Render Users ----
     renderUsers() {
       var container = document.getElementById("users-container");
@@ -1332,38 +1234,8 @@
           formatDate(user.date) +
           "</div>";
 
-        // Delete button
-        var delBtn = document.createElement("button");
-        delBtn.className = "user-delete";
-        delBtn.setAttribute("aria-label", "Delete " + user.name);
-        delBtn.innerHTML =
-          '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>';
-
-        delBtn.addEventListener("click", function (e) {
-          e.stopPropagation();
-          showConfirm(
-            "Delete Result",
-            "Remove " + user.name + " from saved results?",
-            function () {
-              self.deleteUserResult(user.name);
-            },
-          );
-        });
-
-        delBtn.addEventListener("mousedown", function (e) {
-          if (e.button === 0) createRipple(e);
-        });
-        delBtn.addEventListener(
-          "touchstart",
-          function (e) {
-            createRipple(e);
-          },
-          { passive: true },
-        );
-
         card.appendChild(avatar);
         card.appendChild(info);
-        card.appendChild(delBtn);
         container.appendChild(card);
       });
     },
@@ -1395,7 +1267,7 @@
   // ========================================
   document.addEventListener("DOMContentLoaded", function () {
     document
-      .querySelectorAll(".btn, .user-delete, .btn-back")
+      .querySelectorAll(".btn, .btn-back")
       .forEach(function (btn) {
         if (!btn.classList.contains("no-ripple")) {
           btn.addEventListener("mousedown", function (e) {
