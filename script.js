@@ -1097,20 +1097,22 @@
         this._dbSyncing = true;
         DB.getResults()
           .then(function (rows) {
-            self._dbSyncing = false;
-            if (!rows) return;
-            Storage.saveUsers(
-              rows.map(function (r) {
-                return {
-                  name: r.name,
-                  team: r.team,
-                  teamId: r.team_id,
-                  date: r.date,
-                };
-              }),
-            );
+            if (rows) {
+              Storage.saveUsers(
+                rows.map(function (r) {
+                  return {
+                    name: r.name,
+                    team: r.team,
+                    teamId: r.team_id,
+                    date: r.date,
+                  };
+                }),
+              );
+            }
+            // Keep _dbSyncing true so recursive renderUsers skips the DB fetch
             self.renderUsers();
             self.renderStats();
+            self._dbSyncing = false;
           })
           .catch(function () {
             self._dbSyncing = false;
